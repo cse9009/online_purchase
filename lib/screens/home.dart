@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:online_purchase/screens/animals/animal_details.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -8,12 +9,12 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  static const String _cowImageUrl =
+  static const String cowImageUrl =
       'https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8&w=1000&q=80';
-  static const String _goatImageUrl =
+  static const String goatImageUrl =
       'https://images.unsplash.com/photo-1524024973431-2ad916746881?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Z29hdHxlbnwwfHwwfHw%3D&w=1000&q=80';
 
-  static const String _sheepImageUrl =
+  static const String sheepImageUrl =
       'https://media.istockphoto.com/photos/sheep-picture-id182344013?k=20&m=182344013&s=612x612&w=0&h=p88NXan9FWkXkB-4MGF9fVC5qQw5irmVhfOs4WZ-H1U=';
   @override
   Widget build(BuildContext context) {
@@ -42,28 +43,73 @@ class _HomeState extends State<Home> {
               children: [
                 _ProductItem(
                   width: width,
-                  imageUrl: _cowImageUrl,
+                  imageUrl: cowImageUrl,
                   title: 'গরুর টাইটেল',
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const AnimalDetails(
+                            imageUrl: cowImageUrl, title: 'গরুর টাইটেল'),
+                        fullscreenDialog: true,
+                      ),
+                    );
+                  },
                 ),
                 _ProductItem(
                   width: width,
-                  imageUrl: _cowImageUrl,
+                  imageUrl: cowImageUrl,
                   title: 'গরুর টাইটেল',
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const AnimalDetails(
+                            imageUrl: cowImageUrl, title: 'গরুর টাইটেল'),
+                        fullscreenDialog: true,
+                      ),
+                    );
+                  },
                 ),
                 _ProductItem(
                   width: width,
-                  imageUrl: _cowImageUrl,
+                  imageUrl: cowImageUrl,
                   title: 'গরুর টাইটেল',
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const AnimalDetails(
+                            imageUrl: cowImageUrl, title: 'গরুর টাইটেল'),
+                        fullscreenDialog: true,
+                      ),
+                    );
+                  },
                 ),
                 _ProductItem(
                   width: width,
-                  imageUrl: _cowImageUrl,
+                  imageUrl: cowImageUrl,
                   title: 'গরুর টাইটেল',
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const AnimalDetails(
+                            imageUrl: cowImageUrl, title: 'গরুর টাইটেল'),
+                        fullscreenDialog: true,
+                      ),
+                    );
+                  },
                 ),
                 _ProductItem(
                   width: width,
-                  imageUrl: _cowImageUrl,
+                  imageUrl: cowImageUrl,
                   title: 'গরুর টাইটেল',
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const AnimalDetails(
+                            imageUrl: cowImageUrl, title: 'গরুর টাইটেল'),
+                        fullscreenDialog: true,
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
@@ -87,28 +133,73 @@ class _HomeState extends State<Home> {
               children: [
                 _ProductItem(
                   width: width,
-                  imageUrl: _goatImageUrl,
+                  imageUrl: goatImageUrl,
                   title: 'ছাগল টাইটেল',
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const AnimalDetails(
+                            imageUrl: goatImageUrl, title: 'ছাগল টাইটেল'),
+                        fullscreenDialog: true,
+                      ),
+                    );
+                  },
                 ),
                 _ProductItem(
                   width: width,
-                  imageUrl: _goatImageUrl,
+                  imageUrl: goatImageUrl,
                   title: 'ছাগল টাইটেল',
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const AnimalDetails(
+                            imageUrl: goatImageUrl, title: 'ছাগল টাইটেল'),
+                        fullscreenDialog: true,
+                      ),
+                    );
+                  },
                 ),
                 _ProductItem(
                   width: width,
-                  imageUrl: _goatImageUrl,
+                  imageUrl: goatImageUrl,
                   title: 'ছাগল টাইটেল',
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const AnimalDetails(
+                            imageUrl: goatImageUrl, title: 'ছাগল টাইটেল'),
+                        fullscreenDialog: true,
+                      ),
+                    );
+                  },
                 ),
                 _ProductItem(
                   width: width,
-                  imageUrl: _goatImageUrl,
+                  imageUrl: goatImageUrl,
                   title: 'ছাগল টাইটেল',
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const AnimalDetails(
+                            imageUrl: goatImageUrl, title: 'ছাগল টাইটেল'),
+                        fullscreenDialog: true,
+                      ),
+                    );
+                  },
                 ),
                 _ProductItem(
                   width: width,
-                  imageUrl: _goatImageUrl,
+                  imageUrl: goatImageUrl,
                   title: 'ছাগল টাইটেল',
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const AnimalDetails(
+                            imageUrl: goatImageUrl, title: 'ছাগল টাইটেল'),
+                        fullscreenDialog: true,
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
@@ -132,28 +223,73 @@ class _HomeState extends State<Home> {
               children: [
                 _ProductItem(
                   width: width,
-                  imageUrl: _sheepImageUrl,
+                  imageUrl: sheepImageUrl,
                   title: 'ভেড়া টাইটেল',
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const AnimalDetails(
+                            imageUrl: sheepImageUrl, title: 'ভেড়া টাইটেল'),
+                        fullscreenDialog: true,
+                      ),
+                    );
+                  },
                 ),
                 _ProductItem(
                   width: width,
-                  imageUrl: _sheepImageUrl,
+                  imageUrl: sheepImageUrl,
                   title: 'ভেড়া টাইটেল',
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const AnimalDetails(
+                            imageUrl: sheepImageUrl, title: 'ভেড়া টাইটেল'),
+                        fullscreenDialog: true,
+                      ),
+                    );
+                  },
                 ),
                 _ProductItem(
                   width: width,
-                  imageUrl: _sheepImageUrl,
+                  imageUrl: sheepImageUrl,
                   title: 'ভেড়া টাইটেল',
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const AnimalDetails(
+                            imageUrl: sheepImageUrl, title: 'ভেড়া টাইটেল'),
+                        fullscreenDialog: true,
+                      ),
+                    );
+                  },
                 ),
                 _ProductItem(
                   width: width,
-                  imageUrl: _sheepImageUrl,
+                  imageUrl: sheepImageUrl,
                   title: 'ভেড়া টাইটেল',
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const AnimalDetails(
+                            imageUrl: sheepImageUrl, title: 'ভেড়া টাইটেল'),
+                        fullscreenDialog: true,
+                      ),
+                    );
+                  },
                 ),
                 _ProductItem(
                   width: width,
-                  imageUrl: _sheepImageUrl,
+                  imageUrl: sheepImageUrl,
                   title: 'ভেড়া টাইটেল',
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const AnimalDetails(
+                            imageUrl: sheepImageUrl, title: 'ভেড়া টাইটেল'),
+                        fullscreenDialog: true,
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
@@ -170,17 +306,21 @@ class _ProductItem extends StatelessWidget {
     required double width,
     required String imageUrl,
     required String title,
+    required VoidCallback onTap,
   })  : width = width,
         imageUrl = imageUrl,
         title = title,
+        onTap = onTap,
         super(key: key);
 
   final double width;
   final String imageUrl, title;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: onTap,
       child: SizedBox(
         width: width,
         child: Card(
