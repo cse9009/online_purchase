@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:online_purchase/sate_management/app_settings.dart';
+import 'package:online_purchase/sate_management/preferences_settings.dart';
+import 'package:provider/provider.dart';
 
 class AnimalDetails extends StatefulWidget {
   final String imageUrl, title;
@@ -11,6 +14,16 @@ class AnimalDetails extends StatefulWidget {
 
 class _AnimalDetailsState extends State<AnimalDetails> {
   double _fontSize = 16.0;
+  late StreamingSharedPreferencesSettings _streamingSharedPreferencesSettings;
+
+  @override
+  void didChangeDependencies() async {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    _streamingSharedPreferencesSettings =
+        Provider.of<AppSettings>(context).streamingSharedPreferencesSettings;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,10 +52,21 @@ class _AnimalDetailsState extends State<AnimalDetails> {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.chat),
         onPressed: () {
+          if (_streamingSharedPreferencesSettings.token.getValue().isEmpty) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text(
+                  'আপনাকে প্রথমে লগইন করতে হবে',
+                ),
+                backgroundColor: Colors.green,
+              ),
+            );
+            return;
+          }
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text(
-                'আপনাকে প্রথমে লগইন করতে হবে',
+                'Chat feature is coming soon',
               ),
               backgroundColor: Colors.green,
             ),

@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_search_bar/flutter_search_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:online_purchase/components/drawer.dart';
+import 'package:online_purchase/sate_management/app_settings.dart';
+import 'package:online_purchase/sate_management/preferences_settings.dart';
 import 'package:online_purchase/screens/agriculture.dart';
 import 'package:online_purchase/screens/animals/animals.dart';
 import 'package:online_purchase/screens/auth/login.dart';
 import 'package:online_purchase/screens/home.dart';
+import 'package:provider/provider.dart';
 
 class Layout extends StatefulWidget {
   const Layout({Key? key}) : super(key: key);
@@ -18,6 +21,15 @@ class _LayoutState extends State<Layout> {
   SearchBar? searchBar;
   PageController? _pageController;
   int _drawerIndex = 0, _bottomNavIndex = 0;
+  late StreamingSharedPreferencesSettings _streamingSharedPreferencesSettings;
+
+  @override
+  void didChangeDependencies() async {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    _streamingSharedPreferencesSettings =
+        Provider.of<AppSettings>(context).streamingSharedPreferencesSettings;
+  }
 
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
@@ -76,11 +88,15 @@ class _LayoutState extends State<Layout> {
       ),
       body: PageView(
         controller: _pageController,
-        children: const [
-          Home(),
-          Animals(),
-          Agriculture(),
-          Login(),
+        children: [
+          const Home(),
+          const Animals(),
+          const Agriculture(),
+          Login(
+            onStateChange: () {
+              setState(() {});
+            },
+          ),
         ],
         onPageChanged: (pageIndex) {
           setState(() {
@@ -91,6 +107,14 @@ class _LayoutState extends State<Layout> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _bottomNavIndex,
         onTap: (index) {
+          if (index == 3 &&
+              _streamingSharedPreferencesSettings.token.getValue().isNotEmpty) {
+            //Sign Out
+            _streamingSharedPreferencesSettings.token.setValue('');
+            _streamingSharedPreferencesSettings.fullName.setValue('');
+            setState(() {});
+            return;
+          }
           setState(() {
             _bottomNavIndex = index;
           });
@@ -101,15 +125,18 @@ class _LayoutState extends State<Layout> {
           );
         },
         type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(
+        items: [
+          const BottomNavigationBarItem(
               icon: FaIcon(FontAwesomeIcons.home), label: 'হোম'),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
               icon: FaIcon(FontAwesomeIcons.cow), label: 'পশু'),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
               icon: FaIcon(FontAwesomeIcons.tree), label: 'কৃষি'),
-          BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.signIn), label: 'লগইন'),
+          _streamingSharedPreferencesSettings.token.getValue().isEmpty
+              ? const BottomNavigationBarItem(
+                  icon: FaIcon(FontAwesomeIcons.signIn), label: 'লগইন')
+              : const BottomNavigationBarItem(
+                  icon: FaIcon(FontAwesomeIcons.signOut), label: 'লগ আউট'),
         ],
       ),
     );
