@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:online_purchase/sate_management/app_settings.dart';
 import 'package:online_purchase/sate_management/preferences_settings.dart';
+import 'package:online_purchase/screens/chat/chat.dart';
 import 'package:provider/provider.dart';
 
 class AnimalDetails extends StatefulWidget {
@@ -63,14 +64,8 @@ class _AnimalDetailsState extends State<AnimalDetails> {
             );
             return;
           }
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text(
-                'Chat feature is coming soon',
-              ),
-              backgroundColor: Colors.green,
-            ),
-          );
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => const Chat()));
         },
       ),
       body: Stack(
