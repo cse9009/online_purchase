@@ -1,16 +1,27 @@
+import 'dart:typed_data';
+
+import 'package:clipboard/clipboard.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_downloader/image_downloader.dart';
 
-class Chat extends StatelessWidget {
+class Chat extends StatefulWidget {
   const Chat({Key? key}) : super(key: key);
+
+  @override
+  State<Chat> createState() => _ChatState();
+}
+
+class _ChatState extends State<Chat> {
+  String? _fileName;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black45,
       appBar: AppBar(
-        title: const Text('চ্যাট'),
+        title: const Text('চ্যাটের শিরোনাম'),
       ),
       body: Column(
         children: [
@@ -38,6 +49,14 @@ class Chat extends StatelessWidget {
               ],
             ),
           ),
+          _fileName != null
+              ? Text(
+                  'Attached: $_fileName' ?? '',
+                  style: const TextStyle(
+                    color: Colors.white,
+                  ),
+                )
+              : Container(),
           //  Chat actions
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -68,17 +87,33 @@ class Chat extends StatelessWidget {
                       color: Theme.of(context).primaryColor,
                     ),
                   ),
-                  onTap: () {
-                    //TODO: Need to implement file attachment functionality
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text(
-                          'Will implement later',
+                  onTap: () async {
+                    FilePickerResult? result =
+                        await FilePicker.platform.pickFiles();
+
+                    if (result != null) {
+                      //TODO: Pick and upload a file to Firebase Storage
+                      PlatformFile file = result.files.first;
+                      Uint8List? fileBytes = file.bytes;
+                      String fileName = file.name;
+                      String? extension = file.extension;
+                      print('File extension: $extension');
+                      setState(() {
+                        _fileName = fileName;
+                      });
+                      // Upload file
+                      // await FirebaseStorage.instance.ref('uploads/$fileName').putData(fileBytes);
+                    } else {
+                      // User canceled the picker
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            'You canceled the file picker',
+                          ),
+                          backgroundColor: Colors.red,
                         ),
-                        backgroundColor: Colors.green,
-                      ),
-                    );
-                    // selectFile();
+                      );
+                    }
                   },
                 ),
                 GestureDetector(
@@ -194,9 +229,24 @@ class MessageBubble extends StatelessWidget {
                   child: Padding(
                     padding:
                         const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                    child: Text(
-                      text,
-                      style: const TextStyle(color: Colors.white, fontSize: 15),
+                    child: GestureDetector(
+                      child: Text(
+                        text,
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 15),
+                      ),
+                      onLongPress: () {
+                        FlutterClipboard.copy(text).then((value) =>
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                  '✔ ম্যাসেজ কপি করা হয়েছে',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                backgroundColor: Colors.lightGreen,
+                              ),
+                            ));
+                      },
                     ),
                   ),
                 )

@@ -153,26 +153,36 @@ class MyDrawer extends StatelessWidget {
             onTap(context, 2);
           },
         ),
-        // MLMenuItem(
-        //   leading: const Padding(
-        //     padding: EdgeInsets.only(left: 8),
-        //     child: FaIcon(
-        //       FontAwesomeIcons.signIn,
-        //       size: _iconSize,
-        //     ),
-        //   ),
-        //   content: const Padding(
-        //     padding: EdgeInsets.only(left: 16),
-        //     child: Text('লগইন'),
-        //   ),
-        //   onClick: () {
-        //     Navigator.pop(context);
-        //     // Navigator.of(context).push(
-        //     //     MaterialPageRoute(
-        //     //         builder: (context) =>
-        //     //             Chat(userObj: userObj)));
-        //   },
-        // ),
+        MLMenuItem(
+          leading: const Padding(
+            padding: EdgeInsets.only(left: 8),
+            child: FaIcon(
+              FontAwesomeIcons.shareNodes,
+              size: _iconSize,
+            ),
+          ),
+          content: const Padding(
+            padding: EdgeInsets.only(left: 16),
+            child: Text('শেয়ার'),
+          ),
+          onClick: () async {
+            Navigator.pop(context);
+            //TODO: Need to implement with proper package
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text(
+                  'Not implemented yet',
+                ),
+                backgroundColor: Colors.green,
+              ),
+            );
+            //  Share app link
+            // PackageInfo packageInfo = await PackageInfo.fromPlatform();
+            // String packageName = packageInfo.packageName;
+            // Share.share(
+            //     'https://play.google.com/store/apps/details?id=mypackage-name');
+          },
+        ),
       ],
     );
   }

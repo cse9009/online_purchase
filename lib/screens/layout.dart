@@ -7,6 +7,7 @@ import 'package:online_purchase/sate_management/preferences_settings.dart';
 import 'package:online_purchase/screens/agriculture.dart';
 import 'package:online_purchase/screens/animals/animals.dart';
 import 'package:online_purchase/screens/auth/login.dart';
+import 'package:online_purchase/screens/chat/chat_list.dart';
 import 'package:online_purchase/screens/home.dart';
 import 'package:provider/provider.dart';
 
@@ -32,9 +33,19 @@ class _LayoutState extends State<Layout> {
   }
 
   AppBar buildAppBar(BuildContext context) {
-    return AppBar(
-        title: const Text('Online purchase'),
-        actions: [searchBar!.getSearchAction(context)]);
+    return AppBar(title: const Text('Online purchase'), actions: [
+      _streamingSharedPreferencesSettings.token.getValue().isNotEmpty
+          ? GestureDetector(
+              child: const Icon(Icons.chat),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const ChatList(),
+                    fullscreenDialog: true));
+              },
+            )
+          : Container(),
+      searchBar!.getSearchAction(context),
+    ]);
   }
 
   _LayoutState() {
